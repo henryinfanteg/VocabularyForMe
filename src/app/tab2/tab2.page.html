@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Play Game
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Play</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-label class="word">{{wordsList[0].description}}</ion-label>
+    <br>
+    <ion-label class="subtitle wordLink" (click)="toReveal()">{{showAnswer}}</ion-label>
+    <form [formGroup]="form">
+      <ion-item>
+        <ion-label>Answer: </ion-label>
+        <ion-input formControlName="answer"></ion-input>
+      </ion-item>
+    </form>
+    <br>
+    <ion-button expand="block" color="primary" (click)="verify()">Verify</ion-button>
+    <br>
+    <ion-label class="wrong" *ngIf="showError">{{showFlagError()}}</ion-label>
+  </div>
+</ion-content>
