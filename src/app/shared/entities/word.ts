@@ -1,4 +1,4 @@
-export class word {
+export class Word {
     description: string;
-    meaningSpanish: string;
+    meaning_es: string;
 }

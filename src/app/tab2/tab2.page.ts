@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { word } from '../shared/entities/word';
+import { WordService } from '../core/services/word/word.service';
+import { Word } from '../shared/entities/word';
+import { Config } from '../configs/config';
 
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page {
+export class Tab2Page implements OnInit {
 
   form: FormGroup;
   resp: boolean;
@@ -16,17 +18,15 @@ export class Tab2Page {
   showAnswer = this.showAnswerDefault;
 
 
-  wordsList: Array<word> = [
-    {description: 'Awful', meaningSpanish: 'Horrible'},
-    {description: 'Matter', meaningSpanish: 'Importar'},
-    {description: 'Helpful', meaningSpanish: 'Servicial'},
-    {description: 'Useful', meaningSpanish: 'Útil'},
-    {description: 'Should', meaningSpanish: 'Debería'}
-  ];
+  wordsList: Array<Word> = [];
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private WordService: WordService) {
     this.initializeForm();
+  }
+
+  ngOnInit() {
+    this.getWords(Config.quanWord);
   }
 
   initializeForm() {
@@ -35,8 +35,16 @@ export class Tab2Page {
     });
   }
 
+  getWords(cant: number) {
+    this.WordService.getShowWords(cant).subscribe((response: any) => {
+      if(response && response.status === 200) {
+        this.wordsList = response.body;
+      }
+    });
+  }
+
   verify() {
-    if(this.form.controls.answer.value.toLowerCase().trim() === this.wordsList[0].meaningSpanish.toLowerCase()) {
+    if(this.form.controls.answer.value.toLowerCase().trim() === this.wordsList[0].meaning_es.toLowerCase()) {
       this.restoreParameters();
       if(this.wordsList.length > 0) {
         this.wordsList.shift();
@@ -60,7 +68,7 @@ export class Tab2Page {
   }
 
   toReveal() {
-    this.showAnswer = this.wordsList[0].meaningSpanish;
+    this.showAnswer = this.wordsList[0].meaning_es;
   }
 
 }

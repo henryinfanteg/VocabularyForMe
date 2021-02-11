@@ -14,7 +14,7 @@
   </ion-header>
 
   <div id="container">
-    <ion-label class="word">{{wordsList[0].description}}</ion-label>
+    <ion-label class="word" *ngIf="wordsList.length > 0">{{wordsList[0].description}}</ion-label>
     <br>
     <ion-label class="subtitle wordLink" (click)="toReveal()">{{showAnswer}}</ion-label>
     <form [formGroup]="form">

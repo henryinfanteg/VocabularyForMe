@@ -13,17 +13,19 @@
     </ion-toolbar>
   </ion-header>
   <div id="container">
+    <form [formGroup]="form">
     <ion-item>
       <ion-label position="floating">Word</ion-label>
-      <ion-input></ion-input>
+      <ion-input formControlName="word"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Meaning in Spanish</ion-label>
-      <ion-input></ion-input>
+      <ion-input formControlName="meaning"></ion-input>
     </ion-item>
     <br>
-    <ion-button expand="block" color="primary">Add</ion-button>
+    <ion-button expand="block" color="primary" (click)="addWord()">Add</ion-button>
+  </form>
   </div>
 
 
