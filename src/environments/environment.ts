@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   APP_ID: 'WORDSENGLISH-APP',
-  endpointAPIWord: 'http://localhost:3000/wrdsEnglish'
+  endpointAPIWord: 'http://ec2-18-219-252-57.us-east-2.compute.amazonaws.com:3000/wrdsEnglish'
+  // endpointAPIWord: 'http://localhost:3000/wrdsEnglish' 
 
 };
 
