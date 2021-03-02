@@ -1,5 +1,8 @@
 {
   "name": "wordsEnglish",
-  "integrations": {},
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }
